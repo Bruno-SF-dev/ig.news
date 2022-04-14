@@ -9,9 +9,9 @@ export function Header() {
         <img src="/images/logo.svg" alt="ig.news" />
         <nav>
           <a href="#" className={styles.active}>
-            Home
+            Início
           </a>
-          <a href="#">Posts</a>
+          <a href="#">Postagens</a>
         </nav>
 
         <SignInButton />
