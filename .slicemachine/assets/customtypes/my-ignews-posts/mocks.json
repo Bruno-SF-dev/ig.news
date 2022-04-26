@@ -1,0 +1,36 @@
+{
+  "id": "6f980710-83eb-4ada-a54d-1596ef2ed1fd",
+  "uid": "dolore-iste-voluptatibus",
+  "type": "my-ignews-posts",
+  "data": {
+    "Title": [
+      {
+        "type": "heading3",
+        "text": "Disintermediate dynamic supply-chains",
+        "spans": []
+      }
+    ],
+    "Content": [
+      {
+        "type": "heading1",
+        "text": "Syndicate clicks-and-mortar eyeballs",
+        "spans": []
+      },
+      {
+        "type": "image",
+        "dimensions": {
+          "width": 900,
+          "height": 500
+        },
+        "alt": "Placeholder image",
+        "copyright": null,
+        "url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51?w=900&h=500&fit=crop"
+      },
+      {
+        "type": "paragraph",
+        "text": "Ut enim dolor ea veniam deserunt est aliquip adipisicing sint veniam aliqua.",
+        "spans": []
+      }
+    ]
+  }
+}
