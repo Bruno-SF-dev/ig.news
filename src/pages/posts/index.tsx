@@ -2,10 +2,22 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { createClient } from "../../services/prismic";
+import { RichText } from "prismic-dom";
 
 import styles from "./styles.module.scss";
 
-export default function Posts() {
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  updatedAt: string;
+};
+
+interface PostsComponentProps {
+  posts: Post[];
+}
+
+export default function Posts({ posts }: PostsComponentProps) {
   return (
     <>
       <Head>
@@ -14,51 +26,17 @@ export default function Posts() {
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          <div>
-            <Link href="/">
-              <a>
-                <time>12 de Março de 2021</time>
-                <strong>
-                  Creating a Monorepo with Lerna & Yarn Workspaces
-                </strong>
-                <p>
-                  In this guide, you will learn how to create a Monorepo to
-                  manage multiple packages with a shared build, test, and
-                  release process.
-                </p>
-              </a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/">
-              <a>
-                <time>12 de Março de 2021</time>
-                <strong>
-                  Creating a Monorepo with Lerna & Yarn Workspaces
-                </strong>
-                <p>
-                  In this guide, you will learn how to create a Monorepo to
-                  manage multiple packages with a shared build, test, and
-                  release process.
-                </p>
-              </a>
-            </Link>
-          </div>
-          <div>
-            <Link href="/">
-              <a>
-                <time>12 de Março de 2021</time>
-                <strong>
-                  Creating a Monorepo with Lerna & Yarn Workspaces
-                </strong>
-                <p>
-                  In this guide, you will learn how to create a Monorepo to
-                  manage multiple packages with a shared build, test, and
-                  release process.
-                </p>
-              </a>
-            </Link>
-          </div>
+          {posts.map((post) => (
+            <div key={post.slug}>
+              <Link href="/">
+                <a>
+                  <time>{post.updatedAt}</time>
+                  <strong>{post.title}</strong>
+                  <p>{post.excerpt}</p>
+                </a>
+              </Link>
+            </div>
+          ))}
         </div>
       </main>
     </>
@@ -68,11 +46,31 @@ export default function Posts() {
 export const getStaticProps: GetStaticProps = async ({ previewData }) => {
   const client = createClient({ previewData });
 
-  const documents = await client.getAllByType("my-ignews-posts");
+  const response = await client.getAllByType("my-ignews-posts", {
+    pageSize: 2,
+  });
 
-  console.log(documents);
+  console.log(response);
+
+  const posts = response.map((post) => {
+    return {
+      slug: post.uid,
+      title: RichText.asText(post.data.Title),
+      excerpt:
+        post.data.Content.find((content) => content.type === "paragraph")
+          ?.text ?? "",
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString(
+        "pr-BR",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        },
+      ),
+    };
+  });
 
   return {
-    props: { documents },
+    props: { posts },
   };
 };
