@@ -15,9 +15,12 @@ type Post = {
 
 interface PostsComponentProps {
   posts: Post[];
+  response: unknown;
 }
 
-export default function Posts({ posts }: PostsComponentProps) {
+export default function Posts({ response, posts }: PostsComponentProps) {
+  console.log(response);
+
   return (
     <>
       <Head>
@@ -27,15 +30,13 @@ export default function Posts({ posts }: PostsComponentProps) {
       <main className={styles.container}>
         <div className={styles.posts}>
           {posts.map((post) => (
-            <div key={post.slug}>
-              <Link href="/">
-                <a>
-                  <time>{post.updatedAt}</time>
-                  <strong>{post.title}</strong>
-                  <p>{post.excerpt}</p>
-                </a>
-              </Link>
-            </div>
+            <Link href="/" key={post.slug}>
+              <a>
+                <time>{post.updatedAt}</time>
+                <strong>{post.title}</strong>
+                <p>{post.excerpt}</p>
+              </a>
+            </Link>
           ))}
         </div>
       </main>
@@ -46,11 +47,7 @@ export default function Posts({ posts }: PostsComponentProps) {
 export const getStaticProps: GetStaticProps = async ({ previewData }) => {
   const client = createClient({ previewData });
 
-  const response = await client.getAllByType("my-ignews-posts", {
-    pageSize: 2,
-  });
-
-  console.log(response);
+  const response = await client.getAllByType("my-ignews-posts");
 
   const posts = response.map((post) => {
     return {
@@ -60,7 +57,7 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
         post.data.Content.find((content) => content.type === "paragraph")
           ?.text ?? "",
       updatedAt: new Date(post.last_publication_date).toLocaleDateString(
-        "pr-BR",
+        "pt-BR",
         {
           day: "2-digit",
           month: "long",
@@ -71,6 +68,6 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
   });
 
   return {
-    props: { posts },
+    props: { response, posts },
   };
 };
