@@ -1,5 +1,7 @@
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { createClient } from "../../services/prismic";
 
 import styles from "./styles.module.scss";
 
@@ -62,3 +64,15 @@ export default function Posts() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ previewData }) => {
+  const client = createClient({ previewData });
+
+  const documents = await client.getAllByType("my-ignews-posts");
+
+  console.log(documents);
+
+  return {
+    props: { documents },
+  };
+};
