@@ -2,10 +2,7 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import Head from "next/head";
 
-import { query as q } from "faunadb";
 import { RichText } from "prismic-dom";
-
-import { fauna } from "../../services/fauna";
 import { createClient } from "../../services/prismic";
 
 import styles from "./post.module.scss";
@@ -21,9 +18,6 @@ interface PostComponentProps {
 }
 
 export default function Post({ post, response }: PostComponentProps) {
-  console.log(response);
-  console.log(post);
-
   return (
     <>
       <Head>
@@ -51,9 +45,16 @@ export const getServerSideProps: GetServerSideProps = async ({
   const session = await getSession({ req });
   const { slug } = params;
 
-  // if(!session) {
+  console.log(session);
 
-  // }
+  if (!session.activeSubscription) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   const client = createClient({ req });
 
