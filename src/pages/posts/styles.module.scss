@@ -6,7 +6,7 @@
 
 .posts {
   max-width: 720px;
-  margin: 5rem auto 0;
+  margin: 5rem auto 10rem;
 
   a {
     display: block;
@@ -39,7 +39,7 @@
     }
 
     &:hover strong {
-      color: var(--yellow-500);
+      color: #66b0c5;
     }
   }
 }

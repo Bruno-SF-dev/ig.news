@@ -5,6 +5,8 @@ import { stripe } from "../services/stripe";
 import { SubscribeButton } from "../components/SubscribeButton";
 
 import styles from "../styles/pages/home.module.scss";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 interface HomeProps {
   product: {
@@ -14,6 +16,8 @@ interface HomeProps {
 }
 
 export default function Home({ product }: HomeProps) {
+  const { data: session } = useSession();
+
   return (
     <>
       <Head>
@@ -22,15 +26,27 @@ export default function Home({ product }: HomeProps) {
 
       <main className={styles.contentContainer}>
         <section className={styles.hero}>
-          <span>👏 Ei, bem-vindo</span>
           <h1>
             Notícias sobre o mundo <span>React</span>.
           </h1>
-          <p>
-            Tenha acesso a todas as publicações <br />
-            <span>por {product.amount} por mês</span>
-          </p>
-          <SubscribeButton priceId={product.priceId} />
+
+          {session?.activeSubscription ? (
+            <p>
+              Você tem acesso a <span>todas</span> as publicações
+            </p>
+          ) : (
+            <p>
+              Tenha acesso a todas as publicações <br />
+              <span>por {product.amount} por mês</span>
+            </p>
+          )}
+          {session?.activeSubscription ? (
+            <Link href="/posts">
+              <a>Acesse todos os Posts</a>
+            </Link>
+          ) : (
+            <SubscribeButton priceId={product.priceId} />
+          )}
         </section>
 
         <img src="/images/avatar.svg" alt="Girl coding" />
