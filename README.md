@@ -4,7 +4,7 @@
 
 ## 💻 Projeto
 
-Uma plataforma para consumo de publicações, em que o usuário precisa ser assinante para ter acesso completo.
+Uma plataforma para consumo de publicações, em que o usuário precisa ser assinante para ter acesso completo. Caso não seja assinante, um preview do conteúdo é exibido.
 
 ## 🚀 Tecnologias
 
@@ -15,6 +15,6 @@ Uma plataforma para consumo de publicações, em que o usuário precisa ser assi
 - FaunaDB
 - Prismic CMS
 
-### LinkedIn
+### Post no LinkedIn
 
-<!-- https://www.linkedin.com/feed/update/urn:li:activity:6917297986716717057/ -->
+https://www.linkedin.com/feed/update/urn:li:activity:6926533732564635648/?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A6926533732564635648%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29
