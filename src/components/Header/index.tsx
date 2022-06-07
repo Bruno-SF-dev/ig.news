@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { ActiveLink } from "../ActiveLink";
 import { SignInButton } from "../SignInButton";
 
