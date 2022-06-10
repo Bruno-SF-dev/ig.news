@@ -32,7 +32,7 @@ describe("SubscribeButton component", () => {
   });
 
   it("redirects user to posts whent has a subscription", () => {
-    const pushMock = jest.fn();
+    const push = jest.fn();
 
     useSession.mockReturnValue({
       data: {
@@ -47,13 +47,13 @@ describe("SubscribeButton component", () => {
     });
 
     useRouter.mockReturnValue({
-      push: pushMock,
+      push,
     });
 
     render(<SubscribeButton />);
 
     fireEvent.click(screen.getByText("Inscreva-se agora"));
 
-    expect(pushMock).toHaveBeenCalledWith("/posts");
+    expect(push).toHaveBeenCalledWith("/posts");
   });
 });
