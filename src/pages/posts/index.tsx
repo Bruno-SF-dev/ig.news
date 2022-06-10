@@ -16,11 +16,9 @@ type Post = {
 
 interface PostsComponentProps {
   posts: Post[];
-  response: unknown;
 }
 
-export default function Posts({ response, posts }: PostsComponentProps) {
-  console.log(response);
+export default function Posts({ posts }: PostsComponentProps) {
   const { data: session } = useSession();
 
   return (
@@ -77,6 +75,6 @@ export const getStaticProps: GetStaticProps = async ({ previewData }) => {
   });
 
   return {
-    props: { response, posts },
+    props: { posts },
   };
 };
