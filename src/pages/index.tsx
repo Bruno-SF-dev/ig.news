@@ -11,7 +11,7 @@ import Link from "next/link";
 interface HomeProps {
   product: {
     priceId: string;
-    amount: number;
+    amount: string;
   };
 }
 
@@ -45,7 +45,7 @@ export default function Home({ product }: HomeProps) {
               <a>Acesse todos os Posts</a>
             </Link>
           ) : (
-            <SubscribeButton priceId={product.priceId} />
+            <SubscribeButton />
           )}
         </section>
 
