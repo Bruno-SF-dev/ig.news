@@ -14,10 +14,9 @@ interface PostComponentProps {
     content: string;
     updatedAt: string;
   };
-  response: unknown;
 }
 
-export default function Post({ post, response }: PostComponentProps) {
+export default function Post({ post }: PostComponentProps) {
   return (
     <>
       <Head>
@@ -44,8 +43,6 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const session = await getSession({ req });
   const { slug } = params;
-
-  console.log(session);
 
   if (!session?.activeSubscription) {
     return {
@@ -75,6 +72,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   };
 
   return {
-    props: { response, post },
+    props: { post },
   };
 };

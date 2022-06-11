@@ -19,7 +19,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/SignInButton/SignInButton.spec.jsx"
+    "src/components/SignInButton/SignInButton.spec.jsx",
+    "src/tests/pages/PostPreview.spec.jsx"
   ],
   "exclude": ["node_modules"]
 }
