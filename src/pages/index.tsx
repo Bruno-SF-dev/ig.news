@@ -5,8 +5,11 @@ import { stripe } from "../services/stripe";
 import { SubscribeButton } from "../components/SubscribeButton";
 
 import styles from "../styles/pages/home.module.scss";
+import avatarSvg from "../assets/images/avatar.svg";
+
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface HomeProps {
   product: {
@@ -49,7 +52,7 @@ export default function Home({ product }: HomeProps) {
           )}
         </section>
 
-        <img src="/images/avatar.svg" alt="Girl coding" />
+        <Image src={avatarSvg} alt="Girl coding" />
       </main>
     </>
   );

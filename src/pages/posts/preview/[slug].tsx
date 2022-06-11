@@ -27,7 +27,7 @@ export default function PostPreview({ post }: PostPreviewComponentProps) {
     if (session?.activeSubscription) {
       router.push(`/posts/${post.slug}`);
     }
-  }, [session]);
+  }, [session, post.slug, router]);
 
   return (
     <>
