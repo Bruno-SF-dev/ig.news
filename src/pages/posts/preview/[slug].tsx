@@ -17,19 +17,15 @@ interface PostPreviewComponentProps {
     content: string;
     updatedAt: string;
   };
-  response: unknown;
 }
 
-export default function PostPreview({
-  post,
-  response,
-}: PostPreviewComponentProps) {
+export default function PostPreview({ post }: PostPreviewComponentProps) {
   const { data: session } = useSession();
-  const { push } = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     if (session?.activeSubscription) {
-      push(`/posts/${post.slug}`);
+      router.push(`/posts/${post.slug}`);
     }
   }, [session]);
 
@@ -89,7 +85,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
   return {
-    props: { response, post },
+    props: { post },
     revalidate: 60 * 30, // 30 min
   };
 };
