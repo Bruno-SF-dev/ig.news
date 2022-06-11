@@ -1,6 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { Header } from ".";
 
+jest.mock("next/image");
+
 jest.mock("next/router", () => {
   return {
     useRouter() {

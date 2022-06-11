@@ -7,5 +7,6 @@ module.exports = {
   testEnvironment: "jsdom",
   moduleNameMapper: {
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+    "^.+\\.svg$": "jest-svg-transformer",
   },
 };
