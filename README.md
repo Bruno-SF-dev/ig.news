@@ -14,6 +14,8 @@ Uma plataforma para consumo de publicações, em que o usuário precisa ser assi
 - Stripe
 - FaunaDB
 - Prismic CMS
+- Jest
+- Testing Library
 
 ### Post no LinkedIn
 
